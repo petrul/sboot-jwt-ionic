@@ -1,3 +1,6 @@
+2.7.9 Spring Boot app protected with spring-security.
+Example, the HomeController protected rest api endpoints.
+
 From https://github.com/murraco/spring-boot-jwt.
 
 Script client.sh shows API usage.
