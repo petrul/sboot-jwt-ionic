@@ -1,3 +1,7 @@
+From https://github.com/murraco/spring-boot-jwt.
+
+Script client.sh shows API usage.
+
 # Spring Boot JWT
 
 ![](https://img.shields.io/badge/build-success-brightgreen.svg)
