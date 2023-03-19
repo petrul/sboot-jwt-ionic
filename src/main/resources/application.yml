@@ -4,6 +4,9 @@ spring:
     # url: jdbc:mysql://localhost:3306/user_db
     username: root
     password: root
+  data:
+    rest:
+      basePath=/drapi
   tomcat:
     max-wait: 20000
     max-active: 50
@@ -31,7 +34,6 @@ security:
     token:
       secret-key: secret-key
       expire-length: 300000 # 5 minutes duration by default: 5 minutes * 60 seconds * 1000 miliseconds
-      
       
 
 UserController:
