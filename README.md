@@ -1,5 +1,9 @@
-2.7.9 Spring Boot app protected with spring-security.
+Spring Boot 2.7.9 app protected with spring-security and an Angular/Ionic UI.
 Example, the HomeController protected rest api endpoints.
+
+For the Ionic UI:
+* Ionic version 6.20.8
+* Node version 18.13.0
 
 From https://github.com/murraco/spring-boot-jwt.
 

@@ -34,18 +34,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Entry points
     http.authorizeRequests()//
-        .antMatchers("/users/signin").permitAll()//
-        .antMatchers("/users/signup").permitAll()//
+        .antMatchers("/api/users/signin").permitAll()
+        .antMatchers("/api/users/signup").permitAll()
         .antMatchers("/h2-console/**/**").permitAll()
 
-        .antMatchers("/").permitAll()
-//        .antMatchers("/client").permitAll()
-        .antMatchers("/client").hasRole("CLIENT")
-        .antMatchers("/admin").hasRole("ADMIN")
-        .antMatchers("/clientOrAdmin").hasAnyRole("CLIENT", "ADMIN")
+        .antMatchers("/api/home/any").permitAll()
+        .antMatchers("/api/home/client").hasRole("CLIENT")
+        .antMatchers("/api/home/admin").hasRole("ADMIN")
+        .antMatchers("/api/home/clientOrAdmin").hasAnyRole("CLIENT", "ADMIN")
 
-            // Disallow everything else..
-        .anyRequest().authenticated();
+        // Disallow everything else on api
+        .antMatchers("/api/**").authenticated()
+        .antMatchers("/app/**").permitAll() // the ionic app is freely available
+        .anyRequest().permitAll();
 
     // If a user try to access a resource without having enough permissions
     http.exceptionHandling().accessDeniedPage("/login");

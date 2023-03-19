@@ -6,6 +6,12 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+idea {
+    module {
+        excludeDirs += files("node_modules")
+    }
+}
+
 group = 'ro.scriptorium'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '19'
@@ -45,3 +51,40 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
+// the regular app
+task runAppIonicBuild {
+    final String dir = "src/main/webapp-ionic"
+    final subpath="app"
+    doLast {
+        exec {
+            workingDir "./$dir"
+            executable 'npm'
+            args 'install'
+        }
+        exec {
+            workingDir "./$dir"
+            executable 'ionic'
+            args 'build', "--prod",  "--", "--base-href=/$subpath/"
+        }
+        copy {
+            from "./$dir/www/"
+            into "$buildDir/resources/main/static/$subpath"
+        }
+//        copy {
+//            from "./$dir/www/index.html"
+//            into "$buildDir/resources/main/static/app/"
+//            filter { line -> line.replaceAll('href="/"', 'href="/app/"') }
+//        }
+    }
+}
+
+task ionic  {
+    dependsOn runAppIonicBuild
+}
+
+//tasks.processResources.dependsOn << runAdminIonicBuild
+tasks.bootRun.dependsOn << ionic
+tasks.jar.dependsOn << ionic
+tasks.bootJar.dependsOn << ionic

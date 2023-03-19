@@ -26,7 +26,7 @@ import murraco.dto.UserResponseDTO;
 import murraco.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @Api(tags = "users")
 @RequiredArgsConstructor
 public class UserController {
